@@ -172,32 +172,36 @@ function Footer() {
               </ul>
             </Col>
             <Col md={3} sm={12} className={styles.bottomCol}>
-              <div className={styles.bottomTitle}>Quick Links</div>
-              <ul className={styles.bottomList}>
-                {quickLinks.map((item) => (
-                  <li key={item.label}>
-                    <a href={item.href}>{item.label}</a>
-                  </li>
-                ))}
-              </ul>
+              <nav aria-label="Quick Links">
+                <div className={styles.bottomTitle}>Quick Links</div>
+                <ul className={styles.bottomList}>
+                  {quickLinks.map((item) => (
+                    <li key={item.label}>
+                      <a href={item.href}>{item.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
             </Col>
             <Col md={3} sm={12} className={styles.bottomCol}>
               <div className={styles.bottomTitle}>Official Info</div>
-              <div className={styles.infoItem}>
-                <b>Location:</b>
-                <br />
-                Krishnagiri, Tamil Nadu, India.
-              </div>
-              <div className={styles.infoItem}>
-                <b>Email:</b>
-                <br />
-                dropmeonwaytaxi@gmail.com
-              </div>
-              <div className={styles.infoItem}>
-                <b>Phone:</b>
-                <br />
-                +91 9876543210
-              </div>
+              <address>
+                <div className={styles.infoItem}>
+                  <b>Location:</b>
+                  <br />
+                  Krishnagiri, Tamil Nadu, India.
+                </div>
+                <div className={styles.infoItem}>
+                  <b>Email:</b>
+                  <br />
+                  <a href="mailto:dropmeonwaytaxi@gmail.com">dropmeonwaytaxi@gmail.com</a>
+                </div>
+                <div className={styles.infoItem}>
+                  <b>Phone:</b>
+                  <br />
+                  <a href="tel:+919876543210">+91 9876543210</a>
+                </div>
+              </address>
             </Col>
           </Row>
         </Container>
