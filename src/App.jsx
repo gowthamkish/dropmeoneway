@@ -5,7 +5,7 @@ import HeroBooking from "./components/booking/HeroBooking";
 import PopularCities from "./components/popular-cities/PopularCities";
 import Footer from "./components/footer/Footer";
 import About from "./components/about/About";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
