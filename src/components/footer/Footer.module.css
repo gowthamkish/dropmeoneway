@@ -1,0 +1,180 @@
+.footer {
+  background: #222;
+  color: #fff;
+  font-family: 'Jost', Arial, sans-serif;
+  font-size: 15px;
+  margin-top: 48px;
+  position: relative;
+}
+
+.topSection {
+  background: #222;
+  padding: 32px 0 0 0;
+}
+
+.cityCol {
+  margin-bottom: 18px;
+}
+.cityTitle {
+  color: #FFC700;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.cityList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px 0;
+  color: #fff;
+  font-size: 15px;
+}
+.cityList li {
+  margin-bottom: 2px;
+}
+
+.logo {
+  height: 48px;
+  margin-right: 12px;
+}
+.brandText {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin-right: 32px;
+  line-height: 1.1;
+  text-align: left;
+}
+.brandSub {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #fff;
+}
+.footerNav {
+  margin-left: auto;
+  display: flex;
+  gap: 18px;
+}
+.footerNav .nav-link {
+  color: #fff !important;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 0 8px;
+}
+.bookNowBtn {
+  background: #3b3b6d !important;
+  border-radius: 16px !important;
+  color: #fff !important;
+  padding: 4px 18px !important;
+  font-weight: 500 !important;
+  margin-left: 8px;
+}
+
+.bottomSection {
+  background: #181818;
+  padding: 32px 0 0 0;
+}
+.bottomCol {
+  margin-bottom: 18px;
+}
+.logoSmall {
+  height: 38px;
+  margin-bottom: 8px;
+}
+.bottomText {
+  color: #fff;
+  font-size: 14px;
+  margin-top: 8px;
+}
+.bottomTitle {
+  color: #FFC700;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.bottomList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+  font-size: 15px;
+}
+.bottomList li {
+  margin-bottom: 2px;
+}
+.bottomList a {
+  color: #fff;
+  text-decoration: none;
+}
+.infoItem {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.copyright {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+  padding: 12px 0 8px 0;
+  margin-top: 0;
+}
+
+.fabCall {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  background: #f36c0c;
+  color: #fff;
+  font-size: 32px;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  text-decoration: none;
+}
+.fabWhatsapp {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  background: #25d366;
+  color: #fff;
+  font-size: 32px;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .footerNav {
+    flex-direction: column;
+    gap: 8px;
+    margin-left: 0;
+  }
+  .brandText {
+    font-size: 20px;
+    margin-right: 12px;
+  }
+  .logo {
+    height: 32px;
+  }
+  .logoSmall {
+    height: 24px;
+  }
+  .cityTitle, .bottomTitle {
+    font-size: 16px;
+  }
+  .cityList, .bottomList {
+    font-size: 13px;
+  }
+}

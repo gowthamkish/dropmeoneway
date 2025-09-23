@@ -1,0 +1,55 @@
+/* Header.module.css - Additions for Drop Taxi header styling */
+
+.app-header {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: white;
+  height: 180px;
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-img {
+  height: auto;
+  width: 150px;
+  margin-right: 8px;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.nav-link {
+  font-size: 20px !important;
+  font-weight: 400;
+  color: #222 !important;
+  margin-right: 8px;
+  transition: color 0.2s;
+}
+.nav-link:last-child {
+  margin-right: 0;
+}
+.nav-link:hover {
+  color:  #FFC700!important;
+}
+
+.call-button {
+  background: #FFC700 !important;
+  border: none !important;
+  border-radius: 24px !important;
+  padding: 8px 32px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  margin-left: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  color: #fff !important;
+}
