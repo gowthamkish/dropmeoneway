@@ -194,7 +194,7 @@ function Footer() {
                 <div className={styles.infoItem}>
                   <b>Email:</b>
                   <br />
-                  <a href="mailto:dropmeonwaytaxi@gmail.com">dropmeonwaytaxi@gmail.com</a>
+                  <a href="mailto:dropme1waytaxi@gmail.com">dropme1waytaxi@gmail.com</a>
                 </div>
                 <div className={styles.infoItem}>
                   <b>Phone:</b>
@@ -207,7 +207,7 @@ function Footer() {
         </Container>
       </div>
       <div className={styles.copyright}>
-        © DropMeOnWay - Drop Taxi. All Rights Reserved. | Developed by GK
+        © DropMe1Way - Drop Taxi. All Rights Reserved. | Developed by GK
         Technologies
       </div>
     </footer>
