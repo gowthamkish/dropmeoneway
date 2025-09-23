@@ -17,7 +17,7 @@ function HeroBooking() {
             {/* <img src={taxiImg} alt="Taxi" className={styles.taxiImg} /> */}
             <h1 className={styles.heroTitle}>One Way Drop Taxi Booking</h1>
             <h2 className={styles.heroSubtitle}>
-              <span className={styles.highlightText}>DropMeOneWay</span>
+              <span className={styles.highlightText}>DropMe1Way</span>
               <br />
               Drop Taxi - Taxi Services
             </h2>

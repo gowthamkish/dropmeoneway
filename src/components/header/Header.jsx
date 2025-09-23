@@ -21,7 +21,7 @@ function Header() {
           <Navbar.Brand href="#home" className={styles["brand-area"]}>
             <img
               src={logo}
-              alt="DropMeOneWay Logo"
+              alt="DropMe1Way Logo"
               className={styles["logo-img"]}
               style={{ height: 48, marginRight: 12 }}
             />

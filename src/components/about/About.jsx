@@ -13,10 +13,10 @@ const About = () => {
         <div className={styles.textWrapper}>
           <h1 id="about-title" className={styles.aboutTitle}>About</h1>
           <h2 className={styles.welcomeTitle}>
-            Welcome to DropMeOneWay - Your Trusted One Way Drop Taxi Service
+            Welcome to DropMe1Way - Your Trusted One Way Drop Taxi Service
           </h2>
           <p className={styles.description}>
-            We Provide 24x7 One way Drop Service in Tamilnadu. DropMeOneWay is one of the best cab service in Krishnagiri, provides its services between various locations across Tamilnadu at best price. We provides safest journey in Tamil Nadu
+            We Provide 24x7 One way Drop Service in Tamilnadu. DropMe1Way is one of the best cab service in Krishnagiri, provides its services between various locations across Tamilnadu at best price. We provides safest journey in Tamil Nadu
           </p>
           <ul className={styles.features}>
             <li>
@@ -34,7 +34,7 @@ const About = () => {
             <li>
               <strong>Safe and Secure</strong>
               <p>
-                DropMeOneWay Taxi always provides safest and secure journey to the customers
+                DropMe1Way Taxi always provides safest and secure journey to the customers
               </p>
             </li>
             <li>

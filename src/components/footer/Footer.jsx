@@ -154,7 +154,7 @@ function Footer() {
             <Col md={3} sm={12} className={styles.bottomCol}>
               <img
                 src={logo}
-                alt="DropMeOneWay Logo"
+                alt="DropMe1Way Logo"
                 className={styles.logoSmall}
               />
               <div className={styles.bottomText}>
