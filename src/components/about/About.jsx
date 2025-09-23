@@ -25,6 +25,7 @@ const About = () => {
         <meta name="twitter:title" content="About | DropMe1Way - One Way Drop Taxi Service" />
         <meta name="twitter:description" content="Learn more about DropMe1Way, our 24x7 safe and secure taxi service in Tamil Nadu, best drivers, and customer support." />
         <meta name="twitter:image" content="/banner1.jpg" />
+        <meta name="google-site-verification" content="NikWlSxeq8KUkSAZxqVlhZwTOaiVU-WpwY-tyzZ1v8g" />
       </Helmet>
       <section className={styles.aboutContainer} aria-labelledby="about-title">
         <div className={styles.aboutContent}>
