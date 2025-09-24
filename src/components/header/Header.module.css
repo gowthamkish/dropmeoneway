@@ -32,16 +32,18 @@
   color: #222 !important;
   margin-right: 8px;
   transition: color 0.2s;
+  border: none !important;
+  text-decoration: none;
 }
 .nav-link:last-child {
   margin-right: 0;
 }
 .nav-link:hover {
-  color:  #FFC700!important;
+  color: #ffc700 !important;
 }
 
 .call-button {
-  background: #FFC700 !important;
+  background: #ffc700 !important;
   border: none !important;
   border-radius: 24px !important;
   padding: 8px 32px !important;
@@ -53,3 +55,12 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
   color: #fff !important;
 }
+
+.nav-link.active {
+  background-color: #ffc700 !important;
+  color: #fff !important;
+  padding: 6px 16px !important;
+  border-radius: 8px 8px 8px 8px !important;
+  font-weight: 500 !important;
+}
+

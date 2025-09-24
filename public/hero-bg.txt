@@ -1,3 +1,0 @@
-// You should place your hero background image in the public folder as 'hero-bg.jpg'.
-// Example: /public/hero-bg.jpg
-// Use a sunset or tropical beach image similar to the screenshot for best results.
