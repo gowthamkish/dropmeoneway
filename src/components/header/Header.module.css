@@ -5,7 +5,8 @@
   padding-top: 8px;
   padding-bottom: 8px;
   background-color: white;
-  height: 180px;
+  min-height: 180px;
+  height: auto;
 }
 
 .brand-area {
