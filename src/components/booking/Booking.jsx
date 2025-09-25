@@ -26,9 +26,9 @@ function Booking() {
                 A Hassle-Free Journey all over Tamil Nadu, Andhra, Telangana,
                 Karnataka and Kerala
               </div>
-              <Button className={styles.callBtn} href="tel:+919876543210">
+              {/* <Button className={styles.callBtn} href="tel:+919876543210">
                 CALL +91 9876543210
-              </Button>
+              </Button> */}
             </Col>
 
             {/* Right: Booking Form */}

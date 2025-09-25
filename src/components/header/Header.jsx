@@ -76,7 +76,7 @@ function Header() {
                   Contact
                 </NavLink>
               </Nav.Item>
-              <Nav.Item as="li">
+              {/* <Nav.Item as="li">
                 <Button
                   className={styles["call-button"]}
                   style={{
@@ -95,7 +95,7 @@ function Header() {
                 >
                   <span style={{ fontSize: 20, marginRight: 8, fontWeight: 600 }}>+</span>Call 9876543210
                 </Button>
-              </Nav.Item>
+              </Nav.Item> */}
             </Nav>
           </Navbar.Collapse>
         </Container>
