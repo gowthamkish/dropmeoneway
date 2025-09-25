@@ -207,7 +207,7 @@ function Footer() {
         </Container>
       </div>
       <div className={styles.copyright}>
-        © DropMe1Way - Drop Taxi. All Rights Reserved.
+        © DropMe1Way - Drop Taxi. All Rights Reserved. | Developed by KGS Techway Services
       </div>
     </footer>
   );
