@@ -13,10 +13,10 @@ const TariffPage = () => {
           name="description"
           content="Check our transparent taxi tariff for Sedan, SUV, Innova. One way and round trip cab rates, extra charges, and important travel info. Book your safe ride in Tamil Nadu now!"
         />
-        <link rel="canonical" href="https://dropmeoneway.vercel.app/tariff" />
+        <link rel="canonical" href="https://dropme1way.com/tariff" />
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dropmeoneway.vercel.app/tariff" />
+        <meta property="og:url" content="https://dropme1way.com/tariff" />
         <meta
           property="og:title"
           content="Taxi Tariff & Pricing | DropMe1Way - Affordable One Way & Round Trip Cabs"
@@ -28,7 +28,7 @@ const TariffPage = () => {
         <meta property="og:image" content="/banner1.jpg" />
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://dropmeoneway.vercel.app/tariff" />
+        <meta name="twitter:url" content="https://dropme1way.com/tariff" />
         <meta
           name="twitter:title"
           content="Taxi Tariff & Pricing | DropMe1Way - Affordable One Way & Round Trip Cabs"

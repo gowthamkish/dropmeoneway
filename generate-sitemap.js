@@ -2,7 +2,7 @@ import { createWriteStream } from "fs";
 import { SitemapStream } from "sitemap";
 
 const stream = new SitemapStream({
-  hostname: "https://dropmeoneway.vercel.app"
+  hostname: "https://dropme1way.com"
 });
 
 const writeStream = createWriteStream("./public/sitemap.xml");

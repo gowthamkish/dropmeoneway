@@ -15,16 +15,16 @@ const AboutPage = () => {
           name="description"
           content="Discover DropMe1Way's story, values, and commitment to safe, secure, and affordable taxi service across Tamil Nadu. Meet our experienced drivers and learn about our 24x7 customer support."
         />
-        <link rel="canonical" href="https://dropmeoneway.vercel.app/about" />
+        <link rel="canonical" href="https://dropme1way.com/about" />
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dropmeoneway.vercel.app/about" />
+        <meta property="og:url" content="https://dropme1way.com/about" />
         <meta property="og:title" content="About Us | DropMe1Way - Trusted One Way Drop Taxi in Tamil Nadu" />
         <meta property="og:description" content="Discover DropMe1Way's story, values, and commitment to safe, secure, and affordable taxi service across Tamil Nadu. Meet our experienced drivers and learn about our 24x7 customer support." />
         <meta property="og:image" content="/banner1.jpg" />
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://dropmeoneway.vercel.app/about" />
+        <meta name="twitter:url" content="https://dropme1way.com/about" />
         <meta name="twitter:title" content="About Us | DropMe1Way - Trusted One Way Drop Taxi in Tamil Nadu" />
         <meta name="twitter:description" content="Discover DropMe1Way's story, values, and commitment to safe, secure, and affordable taxi service across Tamil Nadu. Meet our experienced drivers and learn about our 24x7 customer support." />
         <meta name="twitter:image" content="/banner1.jpg" />
