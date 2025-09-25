@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dropmeoneway.vercel.app/sitemap.xml
+Sitemap: https://dropme1way.com/sitemap.xml

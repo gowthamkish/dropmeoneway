@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://dropmeoneway.vercel.app/</loc>
+    <loc>https://dropme1way.com/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dropmeoneway.vercel.app/about</loc>
+    <loc>https://dropme1way.com/about</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dropmeoneway.vercel.app/tariff</loc>
+    <loc>https://dropme1way.com/tariff</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dropmeoneway.vercel.app/contact</loc>
+    <loc>https://dropme1way.com/contact</loc>
     <priority>0.8</priority>
   </url>
 </urlset>
