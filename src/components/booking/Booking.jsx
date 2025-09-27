@@ -39,12 +39,6 @@ function Booking() {
     { value: "Trichy", label: "Trichy" },
   ];
 
-  const loadOptions = (inputValue, callback) => {
-    setTimeout(() => {
-      callback(filterColors(inputValue));
-    }, 1000);
-  };
-
   const handleChangePickup = (selectedOption) => {
     setPickup(selectedOption?.value || "");
     // If drop is same as pickup, reset drop
@@ -203,7 +197,7 @@ function Booking() {
                         tripType,
                       };
                       axios
-                        .post(`${apiUrl}/api/bookings`, bookingData)
+                        .post(`${apiUrl}/bookings`, bookingData)
                         .then((res) => {
                           if (res.data.success) {
                             setShowToast(true);
