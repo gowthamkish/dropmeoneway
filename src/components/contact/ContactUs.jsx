@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./ContactUs.module.css";
 import { FaEnvelope, FaRunning, FaPhone, FaMapMarkerAlt, FaSearchLocation} from "react-icons/fa";
 
@@ -15,7 +14,7 @@ const ContactUs = () => {
             <em>dropme1waytaxi@gmail.com</em>
           </div>
         </div>
-        <div className={styles.contactItem}>
+        {/* <div className={styles.contactItem}>
           <div className={styles.iconCircle}>
             <FaPhone size={48} />
           </div>
@@ -24,7 +23,7 @@ const ContactUs = () => {
             <span>+91 9876543210</span>
             <br />
           </div>
-        </div>
+        </div> */}
         <div className={styles.contactItem}>
           <div className={styles.iconCircle}>
             <FaSearchLocation size={48} />

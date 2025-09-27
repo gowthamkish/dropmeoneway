@@ -1,0 +1,38 @@
+:root {
+  --color-primary: #28a745;
+  --color-primary-dark: #218838;
+  --color-secondary: #ffc700;
+  --color-secondary-dark: #e6b800;
+  --color-accent: #25d8e0;
+  --color-bg: #f8f9fa;
+  --color-text: #212529;
+  --color-error: #e53935;
+  --color-success: #d1f7c4;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Example usage for buttons */
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn-secondary {
+  background: var(--color-secondary);
+  color: #fff;
+}
+.btn-accent {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* Example for error/success */
+.text-error {
+  color: var(--color-error);
+}
+.text-success {
+  color: var(--color-primary);
+}
