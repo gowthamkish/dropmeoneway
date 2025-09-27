@@ -14,10 +14,8 @@ import TariffCard from "./TariffCard";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-select";
-import Async, { useAsync } from "react-select/async";
-import AsyncSelect from "react-select/async";
 
-const apiUrl = import.meta.env.VITE_BASE_URL;
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function Booking() {
   const [tripType, setTripType] = useState("oneway");
