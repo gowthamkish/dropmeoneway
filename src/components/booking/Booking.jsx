@@ -197,7 +197,7 @@ function Booking() {
                         tripType,
                       };
                       axios
-                        .post(`${apiUrl}/bookings`, bookingData)
+                        .post(`${apiUrl}/api/bookings`, bookingData)
                         .then((res) => {
                           if (res.data.success) {
                             setShowToast(true);
