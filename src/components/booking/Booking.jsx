@@ -8,14 +8,17 @@ import {
   Button,
   InputGroup,
   Toast,
+  Spinner,
 } from "react-bootstrap";
 import styles from "./Booking.module.css";
 import TariffCard from "./TariffCard";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-select";
+import { env } from "../../utils/envVariables";
+import CustomToast from "../../common/CustomToast";
 
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = env.apiUrl;
 
 function Booking() {
   const [tripType, setTripType] = useState("oneway");
@@ -28,6 +31,10 @@ function Booking() {
   const [drop, setDrop] = useState("");
   const [errors, setErrors] = useState({});
   const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastVariant, setToastVariant] = useState("success"); // "success" or "danger"
+
+  const [loading, setLoading] = useState(false);
 
   const cityOptions = [
     { value: "Salem", label: "Salem" },
@@ -57,57 +64,88 @@ function Booking() {
     setStartDate(new Date());
     setCarType("SEDAN");
     setErrors({});
-  }
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const newErrors = {};
+    if (!mobile.trim()) {
+      newErrors.mobile = "Mobile number is required.";
+    } else if (!/^\d{10}$/.test(mobile.trim())) {
+      newErrors.mobile = "Enter a valid 10-digit mobile number.";
+    }
+    if (!name.trim()) {
+      newErrors.name = "Name is required.";
+    }
+    if (!pickup.trim()) {
+      newErrors.pickup = "Pick-up location is required.";
+    }
+    if (!drop.trim()) {
+      newErrors.drop = "Drop-off location is required.";
+    }
+    if (!startDate || isNaN(startDate.getTime())) {
+      newErrors.date = "Pick-up date & time is required.";
+    }
+    if (!carType) {
+      newErrors.carType = "Car type is required.";
+    }
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length === 0) {
+      setLoading(true); // Show spinner
+      // Prepare booking data
+      const bookingData = {
+        name,
+        mobile,
+        pickUpLocation: pickup,
+        dropOffLocation: drop,
+        pickUpDateAndTime: startDate,
+        returnDateAndTime: tripType === "roundtrip" ? startDate : "",
+        carType,
+        tripType,
+      };
+      axios
+        .post(`${apiUrl}/api/bookings`, bookingData)
+        .then((res) => {
+          if (res.data.success) {
+            setToastMessage(
+              "Submitted successfully!\nWe will get back to you soon..."
+            );
+            setToastVariant("success");
+            setShowToast(true);
+
+            // Reset form
+            resetForm();
+          } else {
+            setToastMessage("Failed to submit booking. Please try again.");
+            setToastVariant("danger");
+            setShowToast(true);
+          }
+        })
+        .catch(() => {
+          setToastMessage("Failed to submit booking. Please try again.");
+          setToastVariant("danger");
+          setShowToast(true);
+        })
+        .finally(() => {
+          setLoading(false); // Hide spinner
+        });
+    }
+  };
 
   useEffect(() => {
-    
     resetForm();
-
   }, [tripType]);
 
   return (
     <>
       <div className={styles.heroBgWrap}>
-        <Toast
-          show={showToast}
-          onClose={() => setShowToast(false)}
-          delay={3500}
-          autohide
-          style={{
-            position: "fixed",
-            top: 24,
-            right: 24,
-            zIndex: 9999,
-            minWidth: 320,
-            background: "#d1f7c4",
-            border: "2px solid #28a745",
-            boxShadow: "0 4px 16px rgba(40,167,69,0.15)",
-            color: "#155724",
-            opacity: showToast ? 1 : 0,
-            transform: showToast ? "translateY(0)" : "translateY(-30px)",
-            transition:
-              "opacity 0.5s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1)",
-          }}
-        >
-          <Toast.Header
-            style={{
-              background: "#28a745",
-              color: "#fff",
-              fontWeight: 600,
-              fontSize: "1.1rem",
-            }}
-          >
-            <span role="img" aria-label="success" style={{ marginRight: 8 }}>
-              ✅
-            </span>
-            <strong className="me-auto">Success</strong>
-          </Toast.Header>
-          <Toast.Body style={{ fontSize: "1.05rem", fontWeight: 500 }}>
-            Submitted successfully!
-            <br />
-            We will get back to you soon...
-          </Toast.Body>
-        </Toast>
+        <CustomToast
+          setShowToast={setShowToast}
+          showToast={showToast}
+          toastMessage={toastMessage}
+          toastVariant={toastVariant}
+        />
+
         <Container className={styles.heroContainer}>
           <Row className={styles.heroRow}>
             {/* Left: Text & Call */}
@@ -158,64 +196,7 @@ function Booking() {
                 <Form
                   className={styles.bookingForm}
                   noValidate
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    const newErrors = {};
-                    if (!mobile.trim()) {
-                      newErrors.mobile = "Mobile number is required.";
-                    } else if (!/^\d{10}$/.test(mobile.trim())) {
-                      newErrors.mobile =
-                        "Enter a valid 10-digit mobile number.";
-                    }
-                    if (!name.trim()) {
-                      newErrors.name = "Name is required.";
-                    }
-                    if (!pickup.trim()) {
-                      newErrors.pickup = "Pick-up location is required.";
-                    }
-                    if (!drop.trim()) {
-                      newErrors.drop = "Drop-off location is required.";
-                    }
-                    if (!startDate || isNaN(startDate.getTime())) {
-                      newErrors.date = "Pick-up date & time is required.";
-                    }
-                    if (!carType) {
-                      newErrors.carType = "Car type is required.";
-                    }
-                    setErrors(newErrors);
-                    if (Object.keys(newErrors).length === 0) {
-                      // Prepare booking data
-                      const bookingData = {
-                        name,
-                        mobile,
-                        pickUpLocation: pickup,
-                        dropOffLocation: drop,
-                        pickUpDateAndTime: startDate,
-                        returnDateAndTime:
-                          tripType === "roundtrip" ? startDate : "",
-                        carType,
-                        tripType,
-                      };
-                      axios
-                        .post(`${apiUrl}/api/bookings`, bookingData)
-                        .then((res) => {
-                          if (res.data.success) {
-                            setShowToast(true);
-                            // Reset form
-                            resetForm();
-                          } else {
-                            setErrors({
-                              api: "Failed to submit booking. Please try again.",
-                            });
-                          }
-                        })
-                        .catch(() => {
-                          setErrors({
-                            api: "Failed to submit booking. Please try again.",
-                          });
-                        });
-                    }
-                  }}
+                  onSubmit={(e) => handleFormSubmit(e)}
                 >
                   <Row>
                     {tripType === "oneway" ? (
@@ -242,8 +223,17 @@ function Booking() {
                               placeholder="Mobile number"
                               className={styles.input}
                               value={mobile}
-                              onChange={(e) => setMobile(e.target.value)}
+                              maxLength={10}
+                              onChange={(e) => {
+                                // Allow only digits, max 10 characters
+                                const val = e.target.value
+                                  .replace(/\D/g, "")
+                                  .slice(0, 10);
+                                setMobile(val);
+                              }}
                               isInvalid={!!errors.mobile}
+                              inputMode="numeric"
+                              pattern="\d*"
                             />
                           </InputGroup>
                           {errors.mobile && (
@@ -395,8 +385,25 @@ function Booking() {
                   <TariffCard carType={carType} />
 
                   <div className={styles.btnRow}>
-                    <Button className={styles.estimateBtn} type="submit">
-                      SUBMIT
+                    <Button
+                      className={styles.estimateBtn}
+                      type="submit"
+                      disabled={loading}
+                    >
+                      {loading ? (
+                        <>
+                          <Spinner
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                            className="me-2"
+                          />
+                          Submitting...
+                        </>
+                      ) : (
+                        "SUBMIT"
+                      )}
                     </Button>
                   </div>
                 </Form>
