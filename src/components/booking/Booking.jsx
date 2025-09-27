@@ -1,20 +1,77 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Form, Button, InputGroup, Toast } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+  InputGroup,
+  Toast,
+} from "react-bootstrap";
 import styles from "./Booking.module.css";
 import TariffCard from "./TariffCard";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Select from "react-select";
+import Async, { useAsync } from "react-select/async";
+import AsyncSelect from "react-select/async";
+
+const apiUrl = import.meta.env.VITE_BASE_URL;
 
 function Booking() {
   const [tripType, setTripType] = useState("oneway");
   const [carType, setCarType] = useState("SEDAN");
   const [startDate, setStartDate] = useState(new Date());
+  const [returnDate, setReturnDate] = useState(new Date());
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [pickup, setPickup] = useState("");
   const [drop, setDrop] = useState("");
   const [errors, setErrors] = useState({});
   const [showToast, setShowToast] = useState(false);
+
+  const cityOptions = [
+    { value: "Salem", label: "Salem" },
+    { value: "Chennai", label: "Chennai" },
+    { value: "Bangalore", label: "Bangalore" },
+    { value: "Coimbatore", label: "Coimbatore" },
+    { value: "Madurai", label: "Madurai" },
+    { value: "Tirunelveli", label: "Tirunelveli" },
+    { value: "Trichy", label: "Trichy" },
+  ];
+
+  const loadOptions = (inputValue, callback) => {
+    setTimeout(() => {
+      callback(filterColors(inputValue));
+    }, 1000);
+  };
+
+  const handleChangePickup = (selectedOption) => {
+    setPickup(selectedOption?.value || "");
+    // If drop is same as pickup, reset drop
+    if (drop === selectedOption?.value) setDrop("");
+  };
+
+  const handleChangeDrop = (selectedOption) => {
+    setDrop(selectedOption?.value || "");
+  };
+
+  const resetForm = () => {
+    setName("");
+    setMobile("");
+    setPickup("");
+    setDrop("");
+    setStartDate(new Date());
+    setCarType("SEDAN");
+    setErrors({});
+  }
+
+  useEffect(() => {
+    
+    resetForm();
+
+  }, [tripType]);
 
   return (
     <>
@@ -30,21 +87,33 @@ function Booking() {
             right: 24,
             zIndex: 9999,
             minWidth: 320,
-            background: '#d1f7c4',
-            border: '2px solid #28a745',
-            boxShadow: '0 4px 16px rgba(40,167,69,0.15)',
-            color: '#155724',
+            background: "#d1f7c4",
+            border: "2px solid #28a745",
+            boxShadow: "0 4px 16px rgba(40,167,69,0.15)",
+            color: "#155724",
             opacity: showToast ? 1 : 0,
-            transform: showToast ? 'translateY(0)' : 'translateY(-30px)',
-            transition: 'opacity 0.5s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1)'
+            transform: showToast ? "translateY(0)" : "translateY(-30px)",
+            transition:
+              "opacity 0.5s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1)",
           }}
         >
-          <Toast.Header style={{ background: '#28a745', color: '#fff', fontWeight: 600, fontSize: '1.1rem' }}>
-            <span role="img" aria-label="success" style={{ marginRight: 8 }}>✅</span>
+          <Toast.Header
+            style={{
+              background: "#28a745",
+              color: "#fff",
+              fontWeight: 600,
+              fontSize: "1.1rem",
+            }}
+          >
+            <span role="img" aria-label="success" style={{ marginRight: 8 }}>
+              ✅
+            </span>
             <strong className="me-auto">Success</strong>
           </Toast.Header>
-          <Toast.Body style={{ fontSize: '1.05rem', fontWeight: 500 }}>
-            Submitted successfully!<br />We will get back to you soon...
+          <Toast.Body style={{ fontSize: "1.05rem", fontWeight: 500 }}>
+            Submitted successfully!
+            <br />
+            We will get back to you soon...
           </Toast.Body>
         </Toast>
         <Container className={styles.heroContainer}>
@@ -97,13 +166,14 @@ function Booking() {
                 <Form
                   className={styles.bookingForm}
                   noValidate
-                  onSubmit={e => {
+                  onSubmit={(e) => {
                     e.preventDefault();
                     const newErrors = {};
                     if (!mobile.trim()) {
                       newErrors.mobile = "Mobile number is required.";
                     } else if (!/^\d{10}$/.test(mobile.trim())) {
-                      newErrors.mobile = "Enter a valid 10-digit mobile number.";
+                      newErrors.mobile =
+                        "Enter a valid 10-digit mobile number.";
                     }
                     if (!name.trim()) {
                       newErrors.name = "Name is required.";
@@ -122,7 +192,36 @@ function Booking() {
                     }
                     setErrors(newErrors);
                     if (Object.keys(newErrors).length === 0) {
-                      setShowToast(true);
+                      // Prepare booking data
+                      const bookingData = {
+                        name,
+                        mobile,
+                        pickUpLocation: pickup,
+                        dropOffLocation: drop,
+                        pickUpDateAndTime: startDate,
+                        returnDateAndTime:
+                          tripType === "roundtrip" ? startDate : "",
+                        carType,
+                        tripType,
+                      };
+                      axios
+                        .post(`${apiUrl}/api/bookings`, bookingData)
+                        .then((res) => {
+                          if (res.data.success) {
+                            setShowToast(true);
+                            // Reset form
+                            resetForm();
+                          } else {
+                            setErrors({
+                              api: "Failed to submit booking. Please try again.",
+                            });
+                          }
+                        })
+                        .catch(() => {
+                          setErrors({
+                            api: "Failed to submit booking. Please try again.",
+                          });
+                        });
                     }
                   }}
                 >
@@ -130,31 +229,35 @@ function Booking() {
                     {tripType === "oneway" ? (
                       <>
                         <Col sm={6} className={styles.formCol}>
+                          <Form.Label>Name</Form.Label>
+                          <Form.Control
+                            placeholder="Enter your Name"
+                            className={styles.input}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            isInvalid={!!errors.name}
+                          />
+                          {errors.name && (
+                            <Form.Text className="text-danger">
+                              {errors.name}
+                            </Form.Text>
+                          )}
+                        </Col>
+                        <Col sm={6} className={styles.formCol}>
                           <Form.Label>Mobile number</Form.Label>
                           <InputGroup>
                             <Form.Control
                               placeholder="Mobile number"
                               className={styles.input}
                               value={mobile}
-                              onChange={e => setMobile(e.target.value)}
+                              onChange={(e) => setMobile(e.target.value)}
                               isInvalid={!!errors.mobile}
                             />
                           </InputGroup>
                           {errors.mobile && (
-                            <Form.Text className="text-danger">{errors.mobile}</Form.Text>
-                          )}
-                        </Col>
-                        <Col sm={6} className={styles.formCol}>
-                          <Form.Label>Name</Form.Label>
-                          <Form.Control
-                            placeholder="Enter your Name"
-                            className={styles.input}
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                            isInvalid={!!errors.name}
-                          />
-                          {errors.name && (
-                            <Form.Text className="text-danger">{errors.name}</Form.Text>
+                            <Form.Text className="text-danger">
+                              {errors.mobile}
+                            </Form.Text>
                           )}
                         </Col>
                       </>
@@ -166,11 +269,13 @@ function Booking() {
                             placeholder="Enter your Name"
                             className={styles.input}
                             value={name}
-                            onChange={e => setName(e.target.value)}
+                            onChange={(e) => setName(e.target.value)}
                             isInvalid={!!errors.name}
                           />
                           {errors.name && (
-                            <Form.Text className="text-danger">{errors.name}</Form.Text>
+                            <Form.Text className="text-danger">
+                              {errors.name}
+                            </Form.Text>
                           )}
                         </Col>
                         <Col sm={6} className={styles.formCol}>
@@ -180,12 +285,14 @@ function Booking() {
                               placeholder="Mobile number"
                               className={styles.input}
                               value={mobile}
-                              onChange={e => setMobile(e.target.value)}
+                              onChange={(e) => setMobile(e.target.value)}
                               isInvalid={!!errors.mobile}
                             />
                           </InputGroup>
                           {errors.mobile && (
-                            <Form.Text className="text-danger">{errors.mobile}</Form.Text>
+                            <Form.Text className="text-danger">
+                              {errors.mobile}
+                            </Form.Text>
                           )}
                         </Col>
                       </>
@@ -195,28 +302,35 @@ function Booking() {
                   <Row>
                     <Col sm={6} className={styles.formCol}>
                       <Form.Label>Pick-up Location</Form.Label>
-                      <Form.Control
-                        placeholder="Enter pick-up location"
-                        className={styles.input}
-                        value={pickup}
-                        onChange={e => setPickup(e.target.value)}
-                        isInvalid={!!errors.pickup}
+                      <Select
+                        options={cityOptions}
+                        value={pickup ? { value: pickup, label: pickup } : null}
+                        onChange={handleChangePickup}
+                        placeholder="Select pick-up location"
+                        isSearchable
                       />
                       {errors.pickup && (
-                        <Form.Text className="text-danger">{errors.pickup}</Form.Text>
+                        <Form.Text className="text-danger">
+                          {errors.pickup}
+                        </Form.Text>
                       )}
                     </Col>
                     <Col sm={6} className={styles.formCol}>
                       <Form.Label>Drop-off Location</Form.Label>
-                      <Form.Control
-                        placeholder="Enter Drop-off Location"
-                        className={styles.input}
-                        value={drop}
-                        onChange={e => setDrop(e.target.value)}
-                        isInvalid={!!errors.drop}
+                      <Select
+                        options={cityOptions.filter(
+                          (opt) => opt.value !== pickup
+                        )}
+                        value={drop ? { value: drop, label: drop } : null}
+                        onChange={handleChangeDrop}
+                        placeholder="Select drop-off location"
+                        isSearchable
+                        isDisabled={!pickup}
                       />
                       {errors.drop && (
-                        <Form.Text className="text-danger">{errors.drop}</Form.Text>
+                        <Form.Text className="text-danger">
+                          {errors.drop}
+                        </Form.Text>
                       )}
                     </Col>
                   </Row>
@@ -230,10 +344,16 @@ function Booking() {
                         minDate={new Date()}
                         showTimeSelect
                         dateFormat="Pp"
-                        className={errors.date ? `${styles.input} is-invalid` : styles.input}
+                        className={
+                          errors.date
+                            ? `${styles.input} is-invalid`
+                            : styles.input
+                        }
                       />
                       {errors.date && (
-                        <Form.Text className="text-danger">{errors.date}</Form.Text>
+                        <Form.Text className="text-danger">
+                          {errors.date}
+                        </Form.Text>
                       )}
                     </Col>
                   </Row>
@@ -244,8 +364,8 @@ function Booking() {
                       <Col sm={12} className={styles.formCol}>
                         <DatePicker
                           id={styles["date-picker"]}
-                          selected={startDate}
-                          onChange={(date) => setStartDate(date)}
+                          selected={returnDate}
+                          onChange={(date) => setReturnDate(date)}
                           minDate={new Date()}
                           showTimeSelect
                           dateFormat="Pp"
@@ -272,7 +392,9 @@ function Booking() {
                         <option value="ETIOS">Etios</option>
                       </Form.Select>
                       {errors.carType && (
-                        <Form.Text className="text-danger">{errors.carType}</Form.Text>
+                        <Form.Text className="text-danger">
+                          {errors.carType}
+                        </Form.Text>
                       )}
                     </Col>
                   </Row>
