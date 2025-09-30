@@ -18,13 +18,13 @@ import Select from "react-select";
 import { env } from "../../utils/envVariables";
 import CustomToast from "../../common/CustomToast";
 
-const apiUrl = env.apiUrl;
+const { baseUrl, apiUrl, whatsAppApiKey, whatsAppPhoneNumberId, whatsAppRecipientNumber, whatsAppBusinessAccountId } = env;
 
 function Booking() {
   const [tripType, setTripType] = useState("oneway");
   const [carType, setCarType] = useState("SEDAN");
-  const [startDate, setStartDate] = useState(new Date());
-  const [returnDate, setReturnDate] = useState(new Date());
+  const [pickUpDateTime, setPickupDateTime] = useState(new Date());
+  const [returnDateTime, setReturnDateTime] = useState(new Date());
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [pickup, setPickup] = useState("");
@@ -61,9 +61,37 @@ function Booking() {
     setMobile("");
     setPickup("");
     setDrop("");
-    setStartDate(new Date());
+    setPickupDateTime(new Date());
     setCarType("SEDAN");
     setErrors({});
+  };
+
+  const sendWhatsAppMessage = () => {
+    const message = `New Booking Received:\nName: ${name}\nMobile: ${mobile}\nPick-up Location: ${pickup}\nDrop-off Location: ${drop}\nPick-up Date & Time: ${pickUpDateTime.toLocaleString()}\nCar Type: ${carType}\nTrip Type: ${tripType}`;
+    const whatsappData = {
+      messaging_product: "whatsapp",
+      to: whatsAppRecipientNumber,
+      type: "text",
+      text: { body: message },
+    };
+
+    axios
+      .post(
+        `https://graph.facebook.com/v17.0/${whatsAppPhoneNumberId}/messages`,
+        whatsappData,
+        {
+          headers: {
+            Authorization: `Bearer ${whatsAppApiKey}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log("WhatsApp message sent:", res.data);
+      })
+      .catch((err) => {
+        console.error("Error sending WhatsApp message:", err);
+      });
   };
 
   const handleFormSubmit = async (e) => {
@@ -83,7 +111,7 @@ function Booking() {
     if (!drop.trim()) {
       newErrors.drop = "Drop-off location is required.";
     }
-    if (!startDate || isNaN(startDate.getTime())) {
+    if (!pickUpDateTime || isNaN(pickUpDateTime.getTime())) {
       newErrors.date = "Pick-up date & time is required.";
     }
     if (!carType) {
@@ -98,13 +126,13 @@ function Booking() {
         mobile,
         pickUpLocation: pickup,
         dropOffLocation: drop,
-        pickUpDateAndTime: startDate,
-        returnDateAndTime: tripType === "roundtrip" ? startDate : "",
+        pickUpDateAndTime: pickUpDateTime,
+        returnDateAndTime: tripType === "roundtrip" ? returnDateTime : "",
         carType,
         tripType,
       };
       axios
-        .post(`${apiUrl}/api/bookings`, bookingData)
+        .post(`${baseUrl}/api/bookings`, bookingData)
         .then((res) => {
           if (res.data.success) {
             setToastMessage(
@@ -112,6 +140,8 @@ function Booking() {
             );
             setToastVariant("success");
             setShowToast(true);
+
+            // sendWhatsAppMessage();
 
             // Reset form
             resetForm();
@@ -267,8 +297,17 @@ function Booking() {
                               placeholder="Mobile number"
                               className={styles.input}
                               value={mobile}
-                              onChange={(e) => setMobile(e.target.value)}
+                              maxLength={10}
+                              onChange={(e) => {
+                                // Allow only digits, max 10 characters
+                                const val = e.target.value
+                                  .replace(/\D/g, "")
+                                  .slice(0, 10);
+                                setMobile(val);
+                              }}
                               isInvalid={!!errors.mobile}
+                              inputMode="numeric"
+                              pattern="\d*"
                             />
                           </InputGroup>
                           {errors.mobile && (
@@ -321,8 +360,8 @@ function Booking() {
                     <Col lg={12} md={12} sm={12} className={styles.formCol}>
                       <DatePicker
                         id={styles["date-picker"]}
-                        selected={startDate}
-                        onChange={(date) => setStartDate(date)}
+                        selected={pickUpDateTime}
+                        onChange={(date) => setPickupDateTime(date)}
                         minDate={new Date()}
                         showTimeSelect
                         dateFormat="Pp"
@@ -346,8 +385,8 @@ function Booking() {
                       <Col sm={12} className={styles.formCol}>
                         <DatePicker
                           id={styles["date-picker"]}
-                          selected={returnDate}
-                          onChange={(date) => setReturnDate(date)}
+                          selected={returnDateTime}
+                          onChange={(date) => setReturnDateTime(date)}
                           minDate={new Date()}
                           showTimeSelect
                           dateFormat="Pp"
