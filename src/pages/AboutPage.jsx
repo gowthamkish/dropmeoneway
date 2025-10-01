@@ -21,13 +21,13 @@ const AboutPage = () => {
         <meta property="og:url" content="https://dropme1way.com/about" />
         <meta property="og:title" content="About Us | DropMe1Way - One Way Drop Taxi in Tamil Nadu" />
         <meta property="og:description" content="Discover DropMe1Way's story, values, and commitment to safe, secure, and affordable taxi service across Tamil Nadu. Meet our experienced drivers and learn about our 24x7 customer support." />
-        <meta property="og:image" content="https://dropme1way.com/assets/logo1.jpeg" />
+        <meta property="og:image" content="https://dropme1way.com/logo1.jpeg" />
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://dropme1way.com/about" />
         <meta name="twitter:title" content="About Us | DropMe1Way - Trusted One Way Drop Taxi in Tamil Nadu" />
         <meta name="twitter:description" content="Discover DropMe1Way's story, values, and commitment to safe, secure, and affordable taxi service across Tamil Nadu. Meet our experienced drivers and learn about our 24x7 customer support." />
-        <meta name="twitter:image" content="https://dropme1way.com/assets/logo1.jpeg"/>
+        <meta name="twitter:image" content="https://dropme1way.com/logo1.jpeg"/>
         <meta name="google-site-verification" content="NikWlSxeq8KUkSAZxqVlhZwTOaiVU-WpwY-tyzZ1v8g" />
       </Helmet>
       <div>
