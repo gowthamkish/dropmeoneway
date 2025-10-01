@@ -12,7 +12,7 @@ export const getCitiesByCountryAndState = createAsyncThunk(
         `https://api.countrystatecity.in/v1/countries/${countryCode}/states/${stateCode}/cities`,
         {
           headers: {
-            "X-CSCAPI-KEY": countryApiKey,
+            "X-CSCAPI-KEY": "Q2N6OVIwUEtldnM0aExoV0txMzJGdWFzbVJCVkFhQTFFT1pLSkl3Rg==",
           },
         }
       );
