@@ -37,7 +37,7 @@ export default function CustomerFeedbackCarousel() {
       >
         What Our Customers Say
       </h3>
-      <Carousel indicators={false} interval={5000} pause="hover">
+      <Carousel style={{height: "30vh"}} indicators={false} interval={5000} pause="hover">
         {feedbacks.map((item, idx) => (
           <Carousel.Item key={idx}>
             <div
