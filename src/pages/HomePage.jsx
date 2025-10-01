@@ -40,7 +40,7 @@ const HomePage = () => {
         />
         <meta
           property="og:image"
-          content="https://dropme1way.com/assets/banner1.jpg"
+          content="https://dropme1way.com/assets/logo1.jpeg"
         />
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -55,7 +55,7 @@ const HomePage = () => {
         />
         <meta
           name="twitter:image"
-          content="https://dropme1way.com/assets/banner1.jpg"
+          content="https://dropme1way.com/assets/logo1.jpeg"
         />
         <meta
           name="google-site-verification"

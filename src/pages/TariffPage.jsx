@@ -25,7 +25,7 @@ const TariffPage = () => {
           property="og:description"
           content="Check our transparent taxi tariff for Sedan, SUV, Innova. One way and round trip cab rates, extra charges, and important travel info. Book your ride in Tamil Nadu now!"
         />
-        <meta property="og:image" content="https://dropme1way.com/assets/banner1.jpg" />
+        <meta property="og:image" content="https://dropme1way.com/assets/logo1.jpeg" />
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://dropme1way.com/tariff" />
@@ -37,7 +37,7 @@ const TariffPage = () => {
           name="twitter:description"
           content="Check our transparent taxi tariff for Sedan, SUV, Innova. One way and round trip cab rates, extra charges, and important travel info. Book your ride in Tamil Nadu now!"
         />
-        <meta name="twitter:image" content="https://dropme1way.com/assets/banner1.jpg" />
+        <meta name="twitter:image" content="https://dropme1way.com/assets/logo1.jpeg" />
         <meta
           name="google-site-verification"
           content="NikWlSxeq8KUkSAZxqVlhZwTOaiVU-WpwY-tyzZ1v8g"
