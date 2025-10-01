@@ -1,6 +1,6 @@
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const API_URL = import.meta.env.VITE_API_URL;
-const COUNTRY_API_KEY = import.meta.env.COUNTRY_API_TOKEN;
+const COUNTRY_API_KEY = import.meta.env.VITE_COUNTRY_API_TOKEN;
 // const WHATSAPP_API_KEY = import.meta.env.VITE_WHATSAPP_API_KEY;
 // const WHATSAPP_PHONE_NUMBER_ID = import.meta.env.VITE_WHATSAPP_PHONE_NUMBER_ID;
 // const WHATSAPP_RECIPIENT_NUMBER = import.meta.env.VITE_WHATSAPP_RECIPIENT_NUMBER;
