@@ -38,6 +38,7 @@
   justify-content: center;
   padding-left: 4vw;
   padding-right: 2vw;
+  row-gap: 12px;
 }
 
 .taxiImg {
@@ -68,7 +69,7 @@
 
 .callBtn {
   background: #fff !important;
-  color: #FFC700 !important;
+  color: var(--color-primary) !important;
   font-weight: 700;
   font-size: 1.1rem;
   border-radius: 8px;
@@ -104,7 +105,7 @@
 }
 
 .activeTab {
-  background: #FFC700 !important;
+  background: var(--color-primary) !important;
   color: #fff !important;
   border-radius: 8px 8px 8px 8px !important;
   font-weight: 600;
@@ -113,7 +114,7 @@
 }
 .inactiveTab {
   background: #f5f5f5 !important;
-  color: #FFC700 !important;
+  color: var(--color-primary) !important;
   border-radius: 8px 8px 8px 8px !important;
   font-weight: 500;
   box-shadow: none !important;
@@ -130,11 +131,11 @@
 
 .input {
   border-radius: 4px;
-  border: 1.5px solid #6b233a;
+  border: 1.5px solid var(--color-secondary);
   font-size: 1.1rem;
   padding: 10px 14px;
   background: #fff;
-  color: #6b233a;
+  color: var(--color-secondary);
 }
 
 .flagInput {
@@ -146,7 +147,7 @@
 
 .carTypeLabel {
   font-size: 1.1rem;
-  color: #6b233a;
+  color: var(--color-secondary) !important;
   font-weight: 600;
   margin-bottom: 8px;
   display: flex;
@@ -161,11 +162,11 @@
 
 .carType {
   background: #f5f5f5;
-  border: 1.5px solid #FFC700;
+  border: 1.5px solid var(--color-primary);;
   border-radius: 8px;
   padding: 8px 18px;
   font-size: 1.1rem;
-  color: #FFC700;
+  color: var(--color-primary);;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -174,9 +175,9 @@
   transition: background 0.2s, color 0.2s;
 }
 .carTypeActive {
-  background: #FFC700;
+  background: var(--color-primary);;
   color: #fff;
-  border: 1.5px solid #FFC700;
+  border: 1.5px solid var(--color-primary);;
   font-weight: 700;
 }
 .carIcon {
@@ -191,7 +192,7 @@
 }
 
 .estimateBtn {
-  background: #FFC700 !important;
+  background: var(--color-primary) !important;
   color: #fff !important;
   font-weight: 700;
   font-size: 1.1rem;

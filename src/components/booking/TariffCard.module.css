@@ -10,7 +10,7 @@
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #25d8e0;
+  color: var(--color-primary);
 }
 .table {
   width: 100%;

@@ -18,13 +18,20 @@ import Select from "react-select";
 import { env } from "../../utils/envVariables";
 import CustomToast from "../../common/CustomToast";
 
-const { baseUrl, apiUrl, whatsAppApiKey, whatsAppPhoneNumberId, whatsAppRecipientNumber, whatsAppBusinessAccountId } = env;
+const {
+  baseUrl,
+  apiUrl,
+  whatsAppApiKey,
+  whatsAppPhoneNumberId,
+  whatsAppRecipientNumber,
+  whatsAppBusinessAccountId,
+} = env;
 
 function Booking() {
   const [tripType, setTripType] = useState("oneway");
   const [carType, setCarType] = useState("SEDAN");
-  const [pickUpDateTime, setPickupDateTime] = useState(new Date());
-  const [returnDateTime, setReturnDateTime] = useState(new Date());
+  const [pickUpDateTime, setPickupDateTime] = useState("");
+  const [returnDateTime, setReturnDateTime] = useState("");
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [pickup, setPickup] = useState("");
@@ -61,7 +68,8 @@ function Booking() {
     setMobile("");
     setPickup("");
     setDrop("");
-    setPickupDateTime(new Date());
+    setPickupDateTime("");
+    setReturnDateTime("");
     setCarType("SEDAN");
     setErrors({});
   };
@@ -117,6 +125,18 @@ function Booking() {
     if (!carType) {
       newErrors.carType = "Car type is required.";
     }
+
+    // ✅ Validate return date & time for roundtrip
+    if (tripType === "roundtrip") {
+      if (!returnDateTime || isNaN(returnDateTime.getTime())) {
+        newErrors.returnDateTime =
+          "Return date & time is required for round trip.";
+      } else if (pickUpDateTime && returnDateTime <= pickUpDateTime) {
+        newErrors.returnDateTime =
+          "Return date & time must be after pick-up date & time.";
+      }
+    }
+
     setErrors(newErrors);
     if (Object.keys(newErrors).length === 0) {
       setLoading(true); // Show spinner
@@ -181,15 +201,20 @@ function Booking() {
             {/* Left: Text & Call */}
             <Col md={6} className={styles.leftCol}>
               {/* <img src={taxiImg} alt="Taxi" className={styles.taxiImg} /> */}
-              <h1 className={styles.heroTitle}>One Way Drop Taxi Booking</h1>
+              <h1 className={styles.heroTitle}>Your Journey, Your Way</h1>
               <h2 className={styles.heroSubtitle}>
-                <span className={styles.highlightText}>DropMe1Way</span>
+                <span className={styles.highlightText}>
+                  Hassle-free rides for one-way, round-trip & airport transfers.
+                </span>
                 <br />
-                Drop Taxi - Taxi Services
+                On time. Comfortable. Transparent pricing.
               </h2>
               <div className={styles.heroDesc}>
-                A Hassle-Free Journey all over Tamil Nadu, Andhra, Telangana,
-                Karnataka and Kerala
+                <div>✅ Door-to-door service</div>
+                <div>✅ Clean, well-maintained cars</div>
+                <div>✅ Trusted, professional drivers</div>
+                <div>✅ 24/7 customer support</div>
+                <div>✅ Transparent pricing</div>
               </div>
               {/* <Button className={styles.callBtn} href="tel:+919876543210">
                 CALL +91 9876543210
@@ -360,6 +385,8 @@ function Booking() {
                     <Col lg={12} md={12} sm={12} className={styles.formCol}>
                       <DatePicker
                         id={styles["date-picker"]}
+                        placeholderText="Select pick-up date & time"
+                        autoComplete="off"
                         selected={pickUpDateTime}
                         onChange={(date) => setPickupDateTime(date)}
                         minDate={new Date()}
@@ -385,12 +412,25 @@ function Booking() {
                       <Col sm={12} className={styles.formCol}>
                         <DatePicker
                           id={styles["date-picker"]}
+                          placeholderText="Select return date & time"
+                          autoComplete="off"
                           selected={returnDateTime}
                           onChange={(date) => setReturnDateTime(date)}
                           minDate={new Date()}
                           showTimeSelect
                           dateFormat="Pp"
+                          className={
+                            errors.date
+                              ? `${styles.input} is-invalid`
+                              : styles.input
+                          }
                         />
+
+                        {errors.returnDateTime && (
+                          <Form.Text className="text-danger">
+                            {errors.returnDateTime}
+                          </Form.Text>
+                        )}
                       </Col>
                     </Row>
                   )}

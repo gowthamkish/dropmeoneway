@@ -22,7 +22,7 @@
 .iconCircle {
   width: 120px;
   height: 120px;
-  background: #FFC700;
+  background: var(--color-primary);;
   border-radius: 50%;
   display: flex;
   align-items: center;
