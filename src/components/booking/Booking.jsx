@@ -17,6 +17,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-select";
 import { env } from "../../utils/envVariables";
 import CustomToast from "../../common/CustomToast";
+import { useSelector } from "react-redux";
 
 const {
   baseUrl,
@@ -42,16 +43,15 @@ function Booking() {
   const [toastVariant, setToastVariant] = useState("success"); // "success" or "danger"
 
   const [loading, setLoading] = useState(false);
+  const { cities, countryLoading, error } = useSelector(
+    (state) => state.location
+  );
 
-  const cityOptions = [
-    { value: "Salem", label: "Salem" },
-    { value: "Chennai", label: "Chennai" },
-    { value: "Bangalore", label: "Bangalore" },
-    { value: "Coimbatore", label: "Coimbatore" },
-    { value: "Madurai", label: "Madurai" },
-    { value: "Tirunelveli", label: "Tirunelveli" },
-    { value: "Trichy", label: "Trichy" },
-  ];
+  // Generate city options for react-select
+  const cityOptions = cities.map((city) => ({
+    value: city.name,
+    label: city.name,
+  }));
 
   const handleChangePickup = (selectedOption) => {
     setPickup(selectedOption?.value || "");

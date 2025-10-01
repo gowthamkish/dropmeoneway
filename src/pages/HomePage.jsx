@@ -5,8 +5,17 @@ import Footer from "../components/footer/Footer";
 import { Helmet } from "react-helmet-async";
 import Booking from "../components/booking/Booking";
 import CustomerFeedbackCarousel from "../components/feedback/CustomFeedback";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCitiesByCountryAndState } from "../store/slices/locationSlice";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Dispatch the Redux action to fetch cities
+    dispatch(getCitiesByCountryAndState({ countryCode: "IN", stateCode: "TN" }));
+  }, [dispatch]);
   return (
     <>
       <Helmet>
