@@ -152,7 +152,7 @@ function Booking() {
         tripType,
       };
       axios
-        .post(`${apiUrl}/api/bookings`, bookingData)
+        .post(`${baseUrl}/api/bookings`, bookingData)
         .then((res) => {
           if (res.data.success) {
             setToastMessage(
@@ -449,8 +449,7 @@ function Booking() {
                       >
                         <option value="SEDAN">Sedan</option>
                         <option value="SUV">SUV</option>
-                        <option value="INNOVA">Innova</option>
-                        <option value="ETIOS">Etios</option>
+                        <option value="MUV">MUV</option>
                       </Form.Select>
                       {errors.carType && (
                         <Form.Text className="text-danger">

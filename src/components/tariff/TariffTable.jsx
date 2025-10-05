@@ -21,19 +21,13 @@ const TariffTable = () => {
             <td>Toll, Permit & Parking</td>
           </tr>
           <tr>
-            <td>ETIOS</td>
-            <td>Rs.14/ KM</td>
-            <td>Rs.13 /KM</td>
-            <td>Toll, Permit & Parking</td>
-          </tr>
-          <tr>
             <td>SUV</td>
             <td>Rs.19/ KM</td>
             <td>Rs.18 /KM</td>
             <td>Toll, Permit & Parking</td>
           </tr>
           <tr>
-            <td>INNOVA</td>
+            <td>MUV</td>
             <td>Rs.20/ KM</td>
             <td>Rs.18 /KM</td>
             <td>Toll, Permit & Parking</td>

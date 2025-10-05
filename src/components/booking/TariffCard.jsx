@@ -2,10 +2,21 @@ import React from "react";
 import styles from "./TariffCard.module.css";
 
 const TARIFF_DATA = {
-  SEDAN: { oneWay: "Rs.14/KM", roundTrip: "Rs.13/KM", extra: "Toll, Permit & Parking" },
-  SUV: { oneWay: "Rs.19/KM", roundTrip: "Rs.18/KM", extra: "Toll, Permit & Parking" },
-  INNOVA: { oneWay: "Rs.20/KM", roundTrip: "Rs.18/KM", extra: "Toll, Permit & Parking" },
-  ETIOS: { oneWay: "Rs.14/KM", roundTrip: "Rs.13/KM", extra: "Toll, Permit & Parking" },
+  SEDAN: {
+    oneWay: "Rs.14/KM",
+    roundTrip: "Rs.13/KM",
+    extra: "Toll, Permit & Parking",
+  },
+  SUV: {
+    oneWay: "Rs.19/KM",
+    roundTrip: "Rs.18/KM",
+    extra: "Toll, Permit & Parking",
+  },
+  MUV: {
+    oneWay: "Rs.20/KM",
+    roundTrip: "Rs.18/KM",
+    extra: "Toll, Permit & Parking",
+  },
 };
 
 function TariffCard({ carType }) {
