@@ -152,7 +152,7 @@ function Booking() {
         tripType,
       };
       axios
-        .post(`${baseUrl}/api/bookings`, bookingData)
+        .post(`${apiUrl}/api/bookings`, bookingData)
         .then((res) => {
           if (res.data.success) {
             setToastMessage(

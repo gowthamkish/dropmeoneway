@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Nav } from "react-bootstrap";
 import styles from "./Footer.module.css";
-import logo from "../../assets/logo3.jpeg";
+import logo from "../../assets/logo1.jpeg";
 
 const cityColumns = [
   {
