@@ -274,6 +274,9 @@ function Booking() {
                         <Col sm={6} className={styles.formCol}>
                           <Form.Label>Mobile number</Form.Label>
                           <InputGroup>
+                            <InputGroup.Text className={styles.countryPrefix}>
+                              🇮🇳 +91
+                            </InputGroup.Text>
                             <Form.Control
                               placeholder="Mobile number"
                               className={styles.input}
@@ -318,6 +321,9 @@ function Booking() {
                         <Col sm={6} className={styles.formCol}>
                           <Form.Label>Mobile number</Form.Label>
                           <InputGroup>
+                            <InputGroup.Text className={styles.countryPrefix}>
+                              🇮🇳 +91
+                            </InputGroup.Text>
                             <Form.Control
                               placeholder="Mobile number"
                               className={styles.input}
@@ -391,7 +397,7 @@ function Booking() {
                         onChange={(date) => setPickupDateTime(date)}
                         minDate={new Date()}
                         showTimeSelect
-                        dateFormat="Pp"
+                        dateFormat="dd/MM/yyyy h:mm aa"
                         className={
                           errors.date
                             ? `${styles.input} is-invalid`
@@ -418,7 +424,7 @@ function Booking() {
                           onChange={(date) => setReturnDateTime(date)}
                           minDate={new Date()}
                           showTimeSelect
-                          dateFormat="Pp"
+                          dateFormat="dd/MM/yyyy h:mm aa"
                           className={
                             errors.date
                               ? `${styles.input} is-invalid`
