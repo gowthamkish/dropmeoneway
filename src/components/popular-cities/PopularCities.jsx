@@ -60,7 +60,7 @@ function PopularCities() {
   return (
     <section className={styles.section}>
       <Container>
-        <h2 className={styles.heading}>Popular cities</h2>
+        <h2 className={styles.heading}>Popular Cities</h2>
         <Row className={styles.cardGrid}>
           {cities.map((city, idx) => (
             <Col
@@ -77,10 +77,10 @@ function PopularCities() {
                   className={styles.cardImg}
                 />
                 <Card.ImgOverlay className={styles.overlay}>
-                  <div className={styles.cardTop}>OUTSTATION CABS</div>
+                  {/* <div className={styles.cardTop}>OUTSTATION CABS</div> */}
                   <div className={styles.cardBottom}>
                     <div className={styles.cityName}>{city.name}</div>
-                    <div className={styles.citySubtitle}>{city.subtitle}</div>
+                    {/* <div className={styles.citySubtitle}>{city.subtitle}</div> */}
                   </div>
                 </Card.ImgOverlay>
               </Card>

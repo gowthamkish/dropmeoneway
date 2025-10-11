@@ -1,12 +1,14 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { Button } from "react-bootstrap";
 import styles from "./Header.module.css";
 import logo from "../../assets/logo1.jpeg";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useState } from "react";
+import { HiMenu } from "react-icons/hi";
 
 function Header() {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
@@ -30,15 +32,26 @@ function Header() {
                 src={logo}
                 alt="DropMe1Way Logo"
                 className={styles["logo-img"]}
-                style={{ height: 48, marginRight: 12 }}
+                style={{ height: 24, marginRight: 12 }}
               />
             </Link>
           </Navbar.Brand>
-          <Navbar.Toggle
+          {/* <Navbar.Toggle
             aria-controls="responsive-navbar-nav"
             onClick={handleShow}
             className="d-lg-none"
-          />
+          /> */}
+
+          <button
+            className={`${styles["menu-toggle"]} d-lg-none`}
+            onClick={handleShow}
+            aria-controls="responsive-navbar-nav"
+            aria-expanded={showOffcanvas}
+            aria-label="Toggle navigation"
+          >
+            <HiMenu size={24} />
+          </button>
+
           <Navbar.Collapse
             id="responsive-navbar-nav"
             className="d-none d-lg-flex"
@@ -97,26 +110,12 @@ function Header() {
                   Contact
                 </NavLink>
               </Nav.Item>
-              {/* <Nav.Item as="li">
-                <Button
-                  className={styles["call-button"]}
-                  style={{
-                    background: '#25d8e0',
-                    border: 'none',
-                    borderRadius: 24,
-                    padding: '8px 32px',
-                    fontSize: 16,
-                    fontWeight: 500,
-                    marginLeft: 24,
-                    display: 'flex',
-                    alignItems: 'center',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
-                  }}
-                  href="tel:9840199985"
-                >
-                  <span style={{ fontSize: 20, marginRight: 8, fontWeight: 600 }}>+</span>Call 9876543210
-                </Button>
-              </Nav.Item> */}
+              <Nav.Item as="li">
+                <a href="tel:+918838553655" className={styles["call-link"]}>
+                  <span className={styles["call-icon"]}>📞</span>
+                  Call +918838553655
+                </a>
+              </Nav.Item>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -131,7 +130,11 @@ function Header() {
       >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            <img src={logo} alt="DropMe1Way Logo" style={{ width: 150, marginLeft: "-15px" }} />
+            <img
+              src={logo}
+              alt="DropMe1Way Logo"
+              style={{ width: 150, marginLeft: "-15px" }}
+            />
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
@@ -141,9 +144,7 @@ function Header() {
             as="ul"
             onClick={handleClose}
           >
-            <Nav.Item
-              as="li"
-            >
+            <Nav.Item as="li">
               <NavLink
                 to="/"
                 className={({ isActive }) =>

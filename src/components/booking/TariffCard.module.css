@@ -1,7 +1,7 @@
 .tariffCard {
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 12px #ccc;
   padding: 1.5rem;
   margin-top: 1.5rem;
   /* max-width: 340px; */

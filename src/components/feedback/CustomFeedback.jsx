@@ -33,7 +33,7 @@ export default function CustomerFeedbackCarousel() {
     <Container className="my-5">
       <h3
         className="mb-4"
-        style={{ color: "#6b233a", fontWeight: 700, textAlign: "center" }}
+        style={{ color: "var(--color-primary)", fontSize: "3rem", fontWeight: 600, textAlign: "center" }}
       >
         What Our Customers Say
       </h3>
@@ -59,7 +59,7 @@ export default function CustomerFeedbackCarousel() {
               >
                 {item.name}
               </div>
-              <div style={{ color: "#FFC700", fontWeight: 500 }}>
+              <div style={{ color: "var(--color-primary)", fontWeight: 500 }}>
                 {item.city}
               </div>
             </div>

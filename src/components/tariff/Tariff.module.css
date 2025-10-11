@@ -17,10 +17,11 @@
   padding: 16px 20px;
   text-align: left;
   font-size: 1.1rem;
+  border: 1px solid #ddd;
 }
 
 .tariffTable th {
-  background: #e74c3c;
+  background: var(--color-info);
   color: #fff;
   font-weight: 700;
   font-size: 1.15rem;
@@ -28,6 +29,7 @@
 
 .tariffTable tr:nth-child(even) td {
   background: #f7f7f7;
+
 }
 
 .tariffTable tr:nth-child(odd) td {
@@ -60,7 +62,7 @@
 }
 
 .infoGrid ul li b {
-  color: #1a237e;
+  color: var(--color-secondary);
   font-size: 1.15rem;
   display: block;
   margin-bottom: 8px;

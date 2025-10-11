@@ -38,17 +38,17 @@ export default function FAQ() {
   return (
     <Container>
       <section className="my-5">
-        <h2 className="mb-4" style={{ color: "#6b233a", fontWeight: 700 }}>
+        <h2 className="mb-4" style={{ color: "var(--color-primary)", fontWeight: 600, textAlign: "center", fontSize: "3rem" }}>
           Frequently Asked Questions
         </h2>
-        <ListGroup variant="flush" style={{ borderLeft: "4px solid #FFC700" }}>
+        <ListGroup variant="flush" style={{ borderLeft: "4px solid var(--color-primary)" }}>
           {faqData.map((item, idx) => (
             <ListGroup.Item
               key={idx}
               className="px-0 py-3"
               style={{
                 border: "none",
-                borderLeft: "4px solid #FFC700",
+                borderLeft: "4px solid var(--color-primary)",
                 position: "relative",
               }}
             >
@@ -62,7 +62,7 @@ export default function FAQ() {
                     marginRight: 12,
                     marginTop: 8,
                     flexShrink: 0,
-                    boxShadow: "0 0 0 3px #FFC700",
+                    boxShadow: "0 0 0 3px var(--color-primary)",
                     position: "relative",
                     left: -10,
                     top: 12,

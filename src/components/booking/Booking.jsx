@@ -74,33 +74,6 @@ function Booking() {
     setErrors({});
   };
 
-  const sendWhatsAppMessage = () => {
-    const message = `New Booking Received:\nName: ${name}\nMobile: ${mobile}\nPick-up Location: ${pickup}\nDrop-off Location: ${drop}\nPick-up Date & Time: ${pickUpDateTime.toLocaleString()}\nCar Type: ${carType}\nTrip Type: ${tripType}`;
-    const whatsappData = {
-      messaging_product: "whatsapp",
-      to: whatsAppRecipientNumber,
-      type: "text",
-      text: { body: message },
-    };
-
-    axios
-      .post(
-        `https://graph.facebook.com/v17.0/${whatsAppPhoneNumberId}/messages`,
-        whatsappData,
-        {
-          headers: {
-            Authorization: `Bearer ${whatsAppApiKey}`,
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((res) => {
-        console.log("WhatsApp message sent:", res.data);
-      })
-      .catch((err) => {
-        console.error("Error sending WhatsApp message:", err);
-      });
-  };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -139,7 +112,12 @@ function Booking() {
 
     setErrors(newErrors);
     if (Object.keys(newErrors).length === 0) {
-      setLoading(true); // Show spinner
+      setToastMessage(
+        "Submitted successfully!\nWe will get back to you soon..."
+      );
+      setToastVariant("success");
+      setShowToast(true);
+      // setLoading(true); // Show spinner
       // Prepare booking data
       const bookingData = {
         name,
@@ -152,16 +130,14 @@ function Booking() {
         tripType,
       };
       axios
-        .post(`${apiUrl}/api/bookings`, bookingData)
+        .post(`${baseUrl}/api/bookings`, bookingData)
         .then((res) => {
           if (res.data.success) {
-            setToastMessage(
-              "Submitted successfully!\nWe will get back to you soon..."
-            );
-            setToastVariant("success");
-            setShowToast(true);
-
-            // sendWhatsAppMessage();
+            // setToastMessage(
+            //   "Submitted successfully!\nWe will get back to you soon..."
+            // );
+            // setToastVariant("success");
+            // setShowToast(true);
 
             // Reset form
             resetForm();
@@ -216,10 +192,13 @@ function Booking() {
                 <div>✅ 24/7 customer support</div>
                 <div>✅ Transparent pricing</div>
               </div>
-              {/* <Button className={styles.callBtn} href="tel:+919876543210">
-                CALL +91 9876543210
-              </Button> */}
+              <a href="tel:+918838553655" className={styles["call-link"]}>
+                <span className={styles["call-icon"]}>📞</span>
+                Call +918838553655
+              </a>
             </Col>
+
+            {JSON.stringify(pickUpDateTime)}
 
             {/* Right: Booking Form */}
             <Col md={6} className={styles.rightCol}>
