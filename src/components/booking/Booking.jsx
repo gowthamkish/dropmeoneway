@@ -130,7 +130,7 @@ function Booking() {
         tripType,
       };
       axios
-        .post(`${baseUrl}/api/bookings`, bookingData)
+        .post(`${apiUrl}/api/bookings`, bookingData)
         .then((res) => {
           if (res.data.success) {
             // setToastMessage(
@@ -197,8 +197,6 @@ function Booking() {
                 Call +918838553655
               </a>
             </Col>
-
-            {JSON.stringify(pickUpDateTime)}
 
             {/* Right: Booking Form */}
             <Col md={6} className={styles.rightCol}>
