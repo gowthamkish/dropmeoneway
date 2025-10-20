@@ -74,6 +74,28 @@ function Booking() {
     setErrors({});
   };
 
+  // Helper function to check if selected date is today
+  const isToday = (date) => {
+    const today = new Date();
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
+  };
+
+  // Helper function to filter past times for today
+  const filterPassedTime = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+    
+    if (isToday(selectedDate)) {
+      return currentDate.getTime() < selectedDate.getTime();
+    }
+    
+    return true;
+  };
+
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -374,6 +396,7 @@ function Booking() {
                         onChange={(date) => setPickupDateTime(date)}
                         minDate={new Date()}
                         showTimeSelect
+                        filterTime={filterPassedTime}
                         dateFormat="dd/MM/yyyy h:mm aa"
                         className={
                           errors.date
@@ -401,6 +424,7 @@ function Booking() {
                           onChange={(date) => setReturnDateTime(date)}
                           minDate={new Date()}
                           showTimeSelect
+                          filterTime={filterPassedTime}
                           dateFormat="dd/MM/yyyy h:mm aa"
                           className={
                             errors.date
