@@ -96,6 +96,75 @@ function Booking() {
     return true;
   };
 
+  // Helper function to round time to next 30-minute interval
+  const getRoundedTime = (date) => {
+    const newDate = new Date(date);
+    const minutes = newDate.getMinutes();
+    const hours = newDate.getHours();
+    
+    if (minutes === 0) {
+      // If exactly on the hour, add 30 minutes
+      newDate.setMinutes(30);
+    } else if (minutes <= 30) {
+      // Round up to 30 minutes
+      newDate.setMinutes(30);
+    } else {
+      // Round up to next hour
+      newDate.setHours(hours + 1);
+      newDate.setMinutes(0);
+    }
+    
+    return newDate;
+  };
+
+  // Handle pickup date change with automatic time setting
+  const handlePickupDateChange = (date) => {
+    if (date) {
+      let finalDate = new Date(date);
+      
+      // If selected date is today, set time to rounded current time
+      if (isToday(date)) {
+        const roundedTime = getRoundedTime(new Date());
+        finalDate.setHours(roundedTime.getHours());
+        finalDate.setMinutes(roundedTime.getMinutes());
+        finalDate.setSeconds(0);
+      } else {
+        // For future dates, set default time to 9:00 AM
+        finalDate.setHours(9);
+        finalDate.setMinutes(0);
+        finalDate.setSeconds(0);
+      }
+      
+      setPickupDateTime(finalDate);
+    } else {
+      setPickupDateTime(date);
+    }
+  };
+
+  // Handle return date change with automatic time setting
+  const handleReturnDateChange = (date) => {
+    if (date) {
+      let finalDate = new Date(date);
+      
+      // If selected date is today, set time to rounded current time
+      if (isToday(date)) {
+        const roundedTime = getRoundedTime(new Date());
+        finalDate.setHours(roundedTime.getHours());
+        finalDate.setMinutes(roundedTime.getMinutes());
+        finalDate.setSeconds(0);
+      } else {
+        // For future dates, set default time to 9:00 AM
+        finalDate.setHours(9);
+        finalDate.setMinutes(0);
+        finalDate.setSeconds(0);
+      }
+      
+      setReturnDateTime(finalDate);
+    } else {
+      setReturnDateTime(date);
+    }
+  };
+
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -393,7 +462,7 @@ function Booking() {
                         placeholderText="Select pick-up date & time"
                         autoComplete="off"
                         selected={pickUpDateTime}
-                        onChange={(date) => setPickupDateTime(date)}
+                        onChange={handlePickupDateChange}
                         minDate={new Date()}
                         showTimeSelect
                         filterTime={filterPassedTime}
@@ -421,7 +490,7 @@ function Booking() {
                           placeholderText="Select return date & time"
                           autoComplete="off"
                           selected={returnDateTime}
-                          onChange={(date) => setReturnDateTime(date)}
+                          onChange={handleReturnDateChange}
                           minDate={new Date()}
                           showTimeSelect
                           filterTime={filterPassedTime}
